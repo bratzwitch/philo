@@ -1,10 +1,11 @@
 NAME = philo
 
-CFLAGS = -Wall -Wextra -Werror -pthread
+CFLAGS = -Wall -Wextra -Werror 
 
 LIBFT = ./lib_ft
 
-SRC =	philosophers.c
+SRC =	main.c	checkers.c avg_it_student.c	init.c	exec.c	time.c 	\
+			
 
 OBJS = $(SRC:.c=.o)
 
@@ -14,7 +15,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 		@echo "Compiling this crap"
-		cc $(CFLAGS) $(OBJS) -o $(NAME)
+		cc -pthread $(CFLAGS) $(OBJS) -o $(NAME)
 		make clean
 		@echo "All good you can rest(no)"
 clean:
