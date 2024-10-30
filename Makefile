@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 LIBFT = ./lib_ft
 
-SRC =	main.c	checkers.c avg_it_student.c	init.c	exec.c	time.c
+SRC =	main.c	checkers.c avg_it_job_seeker.c	init.c	exec.c	time.c
 			
 
 OBJS = $(SRC:.c=.o)
