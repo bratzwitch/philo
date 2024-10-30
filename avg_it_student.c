@@ -6,7 +6,7 @@
 /*   By: vmoroz <vmoroz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 18:23:54 by vmoroz            #+#    #+#             */
-/*   Updated: 2024/10/28 18:29:21 by vmoroz           ###   ########.fr       */
+/*   Updated: 2024/10/30 17:19:57 by vmoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 void	ft_lock(t_data *g, int me, int beside)
 {
 	pthread_mutex_lock(&g->philo[beside].fork);
-	check_if_dead(g);
+	if (check_if_dead(g))
+	{
+		pthread_mutex_unlock(&g->philo[beside].fork);
+		return ;
+	}
 	pthread_mutex_lock(&g->philo[me].fork);
 }
 
@@ -37,7 +41,7 @@ void	sleeping(t_data *g, t_philo *p)
 		printf("%lld Chel number %d is sleeping \n", time_ms(g), p->nb);
 	else
 		return ;
-	usleep(g->t_sleep * 1000);
+	usleep((g->t_sleep) * 1000);
 	if (!check_if_dead(g))
 		printf("%lld Chel number %d is thinking \n", time_ms(g), p->nb);
 	else

@@ -6,7 +6,7 @@
 /*   By: vmoroz <vmoroz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 18:25:47 by vmoroz            #+#    #+#             */
-/*   Updated: 2024/10/28 18:44:28 by vmoroz           ###   ########.fr       */
+/*   Updated: 2024/10/30 17:46:30 by vmoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,21 @@ static void	init_variables(t_data *g, int argc, char **argv)
 	g->t_eat = ft_atoi(argv[3]);
 	g->t_sleep = ft_atoi(argv[4]);
 	g->dead = 0;
+	if (g->t_die == 0 || g->t_eat == 0 || g->t_sleep == 0)
+	{
+		printf("No signs, no letters, no special chars\n");
+		exit(EXIT_FAILURE);
+	}
 	if (argc == 6)
+	{
 		g->t_x_eat = ft_atoi(argv[5]);
+		if (g->t_die == 0 || g->t_eat == 0 || g->t_sleep == 0
+			|| g->t_x_eat == 0)
+		{
+			printf("No signs, no letters, no special chars\n");
+			exit(EXIT_FAILURE);
+		}
+	}
 	else
 		g->t_x_eat = 0;
 }
@@ -56,7 +69,7 @@ static void	checker(t_data *g, int argc, int i)
 		i = 1;
 	else
 	{
-		printf("Please set \e[1;36mat least 1 philosopher\e[0m\n");
+		printf("Please set at least 1 philosopher\n");
 		exit(EXIT_FAILURE);
 	}
 	if (g->t_die >= 0)
@@ -72,9 +85,7 @@ static void	checker(t_data *g, int argc, int i)
 		return ;
 	if (argc == 6 && i == 5)
 		return ;
-	printf(RED "🚨  ! Wrong arguments !  🚨\n" RES);
-	printf("Please use only \e[1;36mvalid unsigned int \e[0mas arguments\n");
-	printf(ORANGE1 "No signs, no letters, no special chars\n" RES);
+	printf("No signs, no letters, no special chars\n");
 	free(g);
 	exit(EXIT_FAILURE);
 }
@@ -93,7 +104,7 @@ void	parser(t_data *g, int argc, char **argv)
 	if (g->nb_philo == 1)
 	{
 		usleep(g->t_die * 1000);
-		printf("%lld %d died\n", g->t_die, 1);
+		printf("%lld Chel number %d died\n", g->t_die, 1);
 		exit(EXIT_FAILURE);
 	}
 }

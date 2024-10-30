@@ -6,7 +6,7 @@
 /*   By: vmoroz <vmoroz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:38:54 by vmoroz            #+#    #+#             */
-/*   Updated: 2024/10/28 18:42:56 by vmoroz           ###   ########.fr       */
+/*   Updated: 2024/10/30 15:04:16 by vmoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,6 @@
 # include <string.h>
 # include <sys/time.h>
 # include <unistd.h>
-
-# define BLACK "\e[1;30m"
-# define RED "\e[1;31m"
-# define GREEN "\e[1;32m"
-# define YELLOW "\e[1;33m"
-# define BLUE "\e[1;34m"
-# define PURPLE "\e[1;35m"
-# define CYAN "\e[1;36m"
-# define WHITE "\e[1;37m"
-# define RES "\e[0m"
-# define ORANGE1 "\033[38;5;214m"
-# define ORANGE2 "\033[38;5;202m"
 
 typedef struct s_data	t_data;
 
