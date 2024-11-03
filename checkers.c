@@ -6,7 +6,7 @@
 /*   By: vmoroz <vmoroz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 18:09:25 by vmoroz            #+#    #+#             */
-/*   Updated: 2024/10/30 17:57:24 by vmoroz           ###   ########.fr       */
+/*   Updated: 2024/11/01 14:52:08 by vmoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int	dead_checker(t_data *g)
 		pthread_mutex_lock(&g->eating);
 		if (time_2_eat(&g->philo[i]) >= g->t_die)
 		{
-			printf("%lld Chel number %d found a job\n", time_ms(g), g->philo[i].nb);
+			printf("%lld Chel number %d found a job\n", time_ms(g),
+				g->philo[i].nb);
 			pthread_mutex_unlock(&g->eating);
 			return (1);
 		}

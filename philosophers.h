@@ -6,7 +6,7 @@
 /*   By: vmoroz <vmoroz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:38:54 by vmoroz            #+#    #+#             */
-/*   Updated: 2024/10/30 15:04:16 by vmoroz           ###   ########.fr       */
+/*   Updated: 2024/11/03 14:31:18 by vmoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,7 @@ int						keep_going_check(t_data *g);
 int						check_if_dead(t_data *g);
 void					ft_free(void **ptr);
 void					eat(t_data *g, t_philo *p);
+size_t					get_current_time(void);
+void					ft_usleep(size_t milliseconds);
 
 #endif
