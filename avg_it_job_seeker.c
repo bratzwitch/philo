@@ -6,7 +6,7 @@
 /*   By: vmoroz <vmoroz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 17:58:13 by vmoroz            #+#    #+#             */
-/*   Updated: 2024/11/03 14:39:40 by vmoroz           ###   ########.fr       */
+/*   Updated: 2024/11/11 12:34:19 by vmoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ void	ft_lock(t_data *g, int me, int beside)
 		return ;
 	}
 	pthread_mutex_lock(&g->philo[me].fork);
+	if (check_if_dead(g))
+	{
+		pthread_mutex_unlock(&g->philo[me].fork);
+		pthread_mutex_unlock(&g->philo[beside].fork);
+		return ;
+	}
 }
 
 void	sleeping(t_data *g, t_philo *p)
@@ -53,11 +59,10 @@ void	print_eat(t_data *g, t_philo *p)
 		printf("%lld Chel number %d has taken a fork\n", time_ms(g), p->nb);
 		printf("%lld Chel number %d has taken a fork\n", time_ms(g), p->nb);
 		printf("%lld Chel number %d is eating\n", time_ms(g), p->nb);
-		check_if_dead(g);
-		ft_usleep(g->t_eat);
-		check_if_dead(g);
 	}
-	sleeping(g, p);
+	check_if_dead(g);
+	ft_usleep(g->t_eat);
+	check_if_dead(g);
 }
 
 void	eat(t_data *g, t_philo *p)
@@ -78,10 +83,11 @@ void	eat(t_data *g, t_philo *p)
 	pthread_mutex_lock(&g->eating);
 	gettimeofday(&p->time, NULL);
 	p->p_eat++;
-	pthread_mutex_unlock(&g->philo[beside].fork);
-	pthread_mutex_unlock(&g->philo[me].fork);
 	pthread_mutex_unlock(&g->eating);
 	if (check_if_dead(g))
 		return ;
 	print_eat(g, p);
+	pthread_mutex_unlock(&g->philo[beside].fork);
+	pthread_mutex_unlock(&g->philo[me].fork);
+	sleeping(g, p);
 }

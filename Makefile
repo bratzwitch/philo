@@ -1,6 +1,6 @@
 NAME = philo
 
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror
 
 LIBFT = ./lib_ft
 
@@ -16,7 +16,6 @@ all: $(NAME)
 $(NAME): $(OBJS)
 		@echo "Compiling this crap"
 		cc -pthread $(CFLAGS) $(OBJS) -o $(NAME)
-		make clean
 		@echo "All good you can rest(no)"
 clean:
 		$(RM) $(OBJS)

@@ -6,7 +6,7 @@
 /*   By: vmoroz <vmoroz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 16:23:26 by vmoroz            #+#    #+#             */
-/*   Updated: 2024/10/30 17:49:24 by vmoroz           ###   ########.fr       */
+/*   Updated: 2024/11/15 17:52:47 by vmoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ void	thread_destroyer(t_data *g)
 	pthread_mutex_destroy(&g->eating);
 	i = -1;
 	while (++i < g->nb_philo)
+	{
 		pthread_mutex_destroy(&g->philo[i].fork);
+	}
 	free(g->philo);
 }
 
@@ -54,10 +56,15 @@ int	main(int argc, char **argv)
 {
 	t_data	g;
 
-	parser(&g, argc, argv);
+	if(parser(&g, argc, argv)  == 1)
+		return (0);
 	init(&g);
 	while (check_if_dead(&g) == 0)
+	{
 		keep_going_check(&g);
+		if(check_if_dead(&g) == 1)
+			break ;
+	}
 	thread_destroyer(&g);
 	return (0);
 }
