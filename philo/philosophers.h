@@ -6,7 +6,7 @@
 /*   By: vmoroz <vmoroz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:38:54 by vmoroz            #+#    #+#             */
-/*   Updated: 2024/11/15 17:42:06 by vmoroz           ###   ########.fr       */
+/*   Updated: 2024/11/16 12:01:37 by vmoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_data
 	t_philo				*philo;
 }						t_data;
 
-int					parser(t_data *d, int argc, char **argv);
+int						parser(t_data *d, int argc, char **argv);
 void					*exec(void *arg);
 void					print_eat(t_data *g, t_philo *p);
 void					sleeping(t_data *g, t_philo *p);

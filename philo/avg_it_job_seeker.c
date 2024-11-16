@@ -6,7 +6,7 @@
 /*   By: vmoroz <vmoroz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 17:58:13 by vmoroz            #+#    #+#             */
-/*   Updated: 2024/11/11 12:34:19 by vmoroz           ###   ########.fr       */
+/*   Updated: 2024/11/16 12:02:27 by vmoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,27 @@
 
 void	ft_lock(t_data *g, int me, int beside)
 {
-	pthread_mutex_lock(&g->philo[beside].fork);
+	int	first_fork;
+	int	second_fork;
+
+	first_fork = beside;
+	second_fork = me;
+	if (me < beside)
+	{
+		first_fork = me;
+		second_fork = beside;
+	}
+	pthread_mutex_lock(&g->philo[first_fork].fork);
 	if (check_if_dead(g))
 	{
-		pthread_mutex_unlock(&g->philo[beside].fork);
+		pthread_mutex_unlock(&g->philo[first_fork].fork);
 		return ;
 	}
-	pthread_mutex_lock(&g->philo[me].fork);
+	pthread_mutex_lock(&g->philo[second_fork].fork);
 	if (check_if_dead(g))
 	{
-		pthread_mutex_unlock(&g->philo[me].fork);
-		pthread_mutex_unlock(&g->philo[beside].fork);
+		pthread_mutex_unlock(&g->philo[first_fork].fork);
+		pthread_mutex_unlock(&g->philo[second_fork].fork);
 		return ;
 	}
 }

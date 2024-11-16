@@ -6,7 +6,7 @@
 /*   By: vmoroz <vmoroz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 16:23:26 by vmoroz            #+#    #+#             */
-/*   Updated: 2024/11/15 17:52:47 by vmoroz           ###   ########.fr       */
+/*   Updated: 2024/11/16 12:02:39 by vmoroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ int	main(int argc, char **argv)
 {
 	t_data	g;
 
-	if(parser(&g, argc, argv)  == 1)
+	if (parser(&g, argc, argv) == 1)
 		return (0);
 	init(&g);
 	while (check_if_dead(&g) == 0)
 	{
 		keep_going_check(&g);
-		if(check_if_dead(&g) == 1)
+		if (check_if_dead(&g) == 1)
 			break ;
 	}
 	thread_destroyer(&g);
